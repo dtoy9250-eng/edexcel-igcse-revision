@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const SubjectCode = z.enum(['4BI1','4CH1','4PH1']);
 export type Subject = z.infer<typeof SubjectCode>;
-export const Difficulty = z.enum(['foundation','standard','challenge']);
+export const Difficulty = z.enum(['standard','stretch','challenge']);
 export const QuestionFormat = z.enum(['short_answer','multiple_choice','calculation','extended_response']);
 export const CommandWord = z.enum(['State','Describe','Explain','Calculate','Compare','Evaluate','Suggest','Determine','Discuss','Comment']);
 const text = (min=1,max=20000) => z.string().trim().min(min).max(max);
