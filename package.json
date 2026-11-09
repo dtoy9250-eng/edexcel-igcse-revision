@@ -1,0 +1,14 @@
+{
+  "name": "edexcel-igcse-revision",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "engines": {"node": ">=22.18 <25"},
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/*.test.ts"
+  },
+  "dependencies": {"zod": "4.6.7"},
+  "devDependencies": {"@electric-sql/pglite": "0.5.16", "@types/node": "24.10.1", "typescript": "5.9.3"}
+}
