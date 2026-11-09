@@ -4,11 +4,19 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@12.18.0",
-  "engines": {"node": ">=22.18 <25"},
+  "engines": {
+    "node": ">=22.18 <25"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/*.test.ts"
+    "test": "node --max-old-space-size=160 --liftoff-only --no-wasm-tier-up --wasm-num-compilation-tasks=1 --experimental-strip-types --test --test-concurrency=1 tests/*.test.ts"
   },
-  "dependencies": {"zod": "4.6.7"},
-  "devDependencies": {"@electric-sql/pglite": "0.5.16", "@types/node": "24.10.1", "typescript": "5.9.3"}
+  "dependencies": {
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.16",
+    "@types/node": "24.10.1",
+    "typescript": "5.9.3"
+  }
 }

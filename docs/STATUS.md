@@ -1,19 +1,18 @@
 # Implementation status
 
-## Confirmed
-- Private GitHub repository created on 9 November 2026.
-- Official linear specification PDFs inspected for paper structure; sources and checksums recorded in SPECIFICATIONS.md.
-- No accessible Supabase project was returned by the connected account.
+## Verified foundation checkpoint — 9 November 2026
+- Private repository exists for Biology 4BI1, Chemistry 4CH1 and Physics 4PH1.
+- Architecture, privacy boundaries, versioned schema, assessment invariants, queue/quota RPCs and original-question validation helpers are committed.
+- The exact source from commit `6b308d26a49a4c78958c12123601631622f71f36` was retrieved with Git-blob SHA verification, then type-checked and tested locally.
+- 108 repository foundation tests passed, with no failures or skips. See TEST-RESULTS.md.
+- A separate interrupted frontend draft had 152 local foundation checks and a successful Next.js build. That draft is not this repository checkpoint and is not claimed as a completed application.
 
-## Current stage
-Architecture and database foundation are being implemented and tested. Test results must be recorded only after execution.
+## Not yet implemented or released in this checkpoint
+The complete Next.js frontend, authentication flows, live Supabase integration, PDF/OCR pipeline, live AI generation/marking, timed mock UI, full objective mapping, privacy export/erasure and end-to-end/accessibility evaluation remain to be completed. These foundation helpers are not a live AI service.
 
-## Not yet complete
-Full frontend and authentication flows; live Supabase database/storage integration; document parsing/OCR; live question generation and marking; timed mock runner; full objective mapping; privacy export/erasure; accessibility and end-to-end tests; background worker provisioning; Vercel deployment.
+## Configuration and authorization required
+1. Choose or create a Supabase project and region, then approve migrations to that exact target. The last account inspection returned no accessible projects.
+2. Configure server-only AI/OCR credentials, model IDs, retention policy and usage/spend limits through secret management, not chat or version control.
+3. Approve worker hosting and, only after full implementation and test review, Vercel deployment separately.
 
-## Authorization/configuration needed
-- Select or create a Supabase project and choose its region before any live migration.
-- Configure server-only AI/OCR credentials and model IDs, retention policy and spend limits.
-- Approve worker hosting and, after test review, Vercel deployment separately.
-
-No finished application, passing test suite or live deployment is claimed at this checkpoint.
+No live database change or deployment has been performed. This is not a production-ready revision platform.
