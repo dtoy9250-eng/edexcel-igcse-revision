@@ -66,7 +66,8 @@ export function validateQuestion(input:unknown,topic:TopicContext,verificationIn
  if(q.criteria.reduce((n,c)=>n+c.marks,0)!==q.marks)issues.push('CRITERION_TOTAL_MISMATCH');
  if(new Set(q.criteria.map(c=>c.key)).size!==q.criteria.length)issues.push('DUPLICATE_CRITERION');
  if(q.criteria.some(c=>c.allow_ecf&&!c.ecf_rule?.trim()))issues.push('ECF_RULE_MISSING');
- if(!q.prompt.toLowerCase().includes(q.command_word.toLowerCase()))issues.push('COMMAND_WORD_MISSING');
+ // Whole-word match: a substring check let 'statement' satisfy State and 'comments' satisfy Comment.
+ if(!new RegExp(`\\b${q.command_word}\\b`,'i').test(q.prompt))issues.push('COMMAND_WORD_MISSING');
  if(v.model===v.generator_model)issues.push('INDEPENDENT_MODEL_REQUIRED');
  if(v.scientific_status!=='pass'||v.mark_scheme_status!=='pass'||v.originality_status!=='pass')issues.push('VERIFICATION_NOT_PASSED');
  if(q.format==='multiple_choice'){
@@ -113,7 +114,8 @@ export function blankAnswerMarking(criteria:Criterion[]):Marking{
  return {confidence:1,feedback:'No answer was submitted. No marks could be awarded.',misconceptions:[],awards:criteria.map(c=>({criterion_key:c.key,marks:0,evidence:'',ecf:false,explanation:'No answer was submitted for this criterion.'}))};
 }
 // Explicit allowlist. Correct choice, scheme and answers are not in active-exam DTOs.
-export function publicQuestion(q:Question,id:string){
+export type PublicQuestionSource=Pick<Question,'subject_code'|'topic_id'|'prompt'|'marks'|'difficulty'|'format'|'command_word'|'structured_content'|'choices'>;
+export function publicQuestion(q:PublicQuestionSource,id:string){
  return {id,subject_code:q.subject_code,topic_id:q.topic_id,prompt:q.prompt,marks:q.marks,difficulty:q.difficulty,
  format:q.format,command_word:q.command_word,structured_content:q.structured_content,choices:q.choices};
 }
